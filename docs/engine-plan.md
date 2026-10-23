@@ -35,3 +35,6 @@ Per stage: example runs on the phone (`-dyn` GLES path and terminal path), a tes
 
 ## Not in this plan
 Own shader language, own kernel/GPU driver, Vulkan renderer parity (after E5), any change to J2K syntax (open-questions only).
+
+## Owner change 2026-10-23
+`jengine setup NAME` makes a whole project at once with several modes (`-2d -3d -term -pro`): folders `src/ assets/ lib/ shaders/ scenes/`, starter code, and a `makej.toml` so `makej` / `makej -j` / `makej run` work at once. It belongs to E3 (`new` is its alias); the starter code and the modes are made when E3 starts.
