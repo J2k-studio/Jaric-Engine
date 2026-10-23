@@ -48,3 +48,18 @@ Name: **`jaric-engine`** (command), short alias `jengine`. (`enginejar` is not u
 ## Open questions for the owner
 * Name: `jaric-engine` or something else? * Should `install` download the app apk, or only tell where it is?
 * Is `<jecs>` the name for the ECS library?
+
+## 5. Targets set by the owner (2026-10-23)
+**Ease:** writing a game must be as easy as in C# with MonoGame: `Game` with `load / update / draw`, `SpriteBatch`, `Content.load`, input as state objects, no manual memory for the common case (ownership frees it). Test: the "hello sprite" game is at most 25 lines, a Pong at most 80.
+**Breadth:** the engine must be able to make games like **MonoGame samples, Terraria and Stardew Valley** (2D, tile worlds, many entities). What those games need, and where it comes from:
+| Need | Terraria-like | Stardew-like | Piece |
+|---|---|---|---|
+| big tile world, chunks, lazy load/save | yes (8400x2400) | yes (maps) | `<jtile>`: chunked SoA tile layers (`u16` id, light, liquid), dirty flags, save to file |
+| tile collision, slopes, platformer physics | yes | grid only | `<jphys2d>`: AABB vs tiles, one-way platforms, rigid bodies later |
+| lighting (flood light), liquids, falling sand | yes | no | cellular passes in SoA, optional compute shader |
+| sprite animation, atlases, 9-slice UI, bitmap fonts | yes | yes | `<gamej>` + `<jui>` |
+| top-down tiles, NPC paths, day/night clock, seasons, inventory | little | yes | `<jpath>` (A*), `<jclock>`, ECS components (`<jecs>`) |
+| items/recipes/data in files | yes | yes | JSON/TOML (stdlib) read at load |
+| camera, parallax, particles, sound, save games, touch controls | yes | yes | `<gamej>`, `<jvfx>`, app audio, `Fs`, touch |
+| many entities (thousands of NPCs, projectiles, drops) | yes | some | SoA pools, systems over pools, many cores |
+Order after the core: `<jtile>` + tile collision -> a "mini Terraria" example (dig, place, gravity, 2000x600 world) -> `<jclock>`/`<jpath>` -> a "mini Stardew" example (farm tiles, crops that grow by day, NPC walking). Each example doubles as a test and a tutorial.
