@@ -14,7 +14,7 @@ A game engine and graphics libraries for the [J2K language](https://github.com/J
 ```
 jget -li install gamej gpu native opengl3 vulkan      # the libraries (jget: https://github.com/J2k-studio/Jcmp-Tools)
 makej init -game                                      # a game project with Jaric Engine and five lessons (makej play1 .. play5)
-makej apk                                             # the game as an Android app;  makej pack = .jec;  makej dist = every system
+makej apk                                             # the game as an Android app;  makej pack = .jc;  makej dist = every system
 ```
 `jcmp` 1.1.1 or newer (`jget tool jcmp`).
 
@@ -46,6 +46,6 @@ jcmp -dyn examples/vulkan_info.jk -o vk && ./vk                       # Mali-G76
 How it works: a program built with `-dyn` is started by the loader of Android and gets `libdl.so`; `<native>` finds `dlopen`/`dlsym` in memory and calls any function of `libEGL.so`, `libGLESv3.so`, `libvulkan.so` through function pointers. No app and no C code is needed.
 
 ## The plan
-Layers (like MonoGame below, like Godot above): 0 the chip (`<gpu>`, `<opengl3>`, `<vulkan>`), 1 the framework (`<gamej>`), 2 scenes and nodes (planned), 3 tools (editor, planned), 4 export (`makej dist`: Android, Jaric OS `.jec`, Linux). See [docs/roadmap.md](docs/roadmap.md). Tutorial in the J2K repository: lessons 61 to 66.
+Layers (like MonoGame below, like Godot above): 0 the chip (`<gpu>`, `<opengl3>`, `<vulkan>`), 1 the framework (`<gamej>`), 2 scenes and nodes (planned), 3 tools (editor, planned), 4 export (`makej dist`: Android, Jaric OS `.jc`, Linux). See [docs/roadmap.md](docs/roadmap.md). Tutorial in the J2K repository: lessons 61 to 66.
 
 License: MPL-2.0.

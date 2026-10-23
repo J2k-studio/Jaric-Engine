@@ -109,9 +109,15 @@ struct Gpu {
         if !self.good { return; }
         String p = file;
         if !p.starts_with("/") {
-            switch Env::get("JEC_ASSETS") {
+            switch Env::get("JC_ASSETS") {
                 Option::Some(a): { if Fs::exists(a + "/" + file) { p = a + "/" + file; } }
                 Option::None: { }
+            }
+            if !Fs::exists(p) {                                   // JEC_ASSETS: the old name, read for one more release
+                switch Env::get("JEC_ASSETS") {
+                    Option::Some(a2): { if Fs::exists(a2 + "/" + file) { p = a2 + "/" + file; } }
+                    Option::None: { }
+                }
             }
         }
         cout << "\e]7777;gpu;tex;" << id << ";" << p << "\a";

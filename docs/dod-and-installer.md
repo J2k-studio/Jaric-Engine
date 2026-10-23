@@ -20,7 +20,7 @@ Name: **`jaric-engine`** (command), short alias `jengine`. (`enginejar` is not u
 | `jaric-engine install` | installs the minimum: `jcmp`, `makej`, `jget`, the libraries `gamej gpu opengl3 vulkan native vec simd deflate`, the Jaric app (apk) if the user wants the surface path |
 | `jaric-engine new NAME [-2d|-3d|-term]` | makes the project (calls `makej init -game`), with `src/ assets/ shaders/ scenes/ makej.toml` |
 | `jaric-engine run` | builds (`makej -j`) and starts; on the phone uses the app surface or the native `-dyn` path |
-| `jaric-engine pack` | `.jec` / apk through `makej dist` |
+| `jaric-engine pack` | `.jc` / apk through `makej dist` |
 | `jaric-engine info` | GPU name, GLES / Vulkan version, compute support, cores, screen size |
 
 ## 3. What "everything needed" means (the minimum, per layer)
